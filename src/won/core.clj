@@ -8,6 +8,10 @@
 (defn calculate-vaccines [vaccine-patches]
   (let [manufactorer (:vaccine (first vaccine-patches))]
     (reduce (fn [acc cur]
+              (println 
+               {:vaccine manufactorer
+                :batch_date (:batch_date cur)
+                :remaining (+ (:quantity cur) (:quantity-remaining acc))})
               (assoc acc :quantity-remaining (+ (:quantity cur) (:quantity-remaining acc))))
             {:vaccine manufactorer :quantity-remaining 0}
             vaccine-patches)))
