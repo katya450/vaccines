@@ -3,28 +3,28 @@
    [clojure.data.json :as json]))
 
 (def data (slurp "./resources/testi.json"))
+(def data-with-keys (json/read-str data :key-fn keyword))
 
-(def data-with-key (json/read-str data :key-fn keyword))
-(def quantities-negated (map #(if (= (:direction %) "OUT") (assoc % :quantity (- (:quantity %))) %) data-with-key))
-
-(def data-no-direction (map #(dissoc % :direction) quantities-negated))
-
-(def grouped-by-vaccines (group-by :vaccine data-no-direction))
-
-(def mapped-by-vaccines (map second grouped-by-vaccines))
-
-(defn vaccine-calculated [daily-batch]
-  (let [vacc (:vaccine (first daily-batch))]
+(defn calculate-vaccines [vaccine-patches]
+  (let [manufactorer (:vaccine (first vaccine-patches))]
     (reduce (fn [acc cur]
-              (assoc acc :quantity (+ (:quantity cur) (:quantity acc))))
-            {:vaccine vacc :quantity-remaining 0}
-            daily-batch)))
+              (assoc acc :quantity-remaining (+ (:quantity cur) (:quantity-remaining acc))))
+            {:vaccine manufactorer :quantity-remaining 0}
+            vaccine-patches)))
 
-(def quantity-by-vaccine
-  (map #(vaccine-calculated %) mapped-by-vaccines))
+(defn map-by-vaccines [data-with-negated-vals]
+  (map second (group-by :vaccine data-with-negated-vals)))
 
+(defn negate-out-quantities [data]
+  (->> data
+       (map
+        #(if (= (:direction %) "OUT") (assoc % :quantity (- (:quantity %))) %))
+       (map #(dissoc % :direction))))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (quantity-by-vaccine))
+(defn quantities [data-with-keys]
+  (->> data-with-keys
+       (negate-out-quantities)
+       (map-by-vaccines)
+       (map #(calculate-vaccines %))))
+
+(quantities data-with-keys)
