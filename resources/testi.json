@@ -1,0 +1,75 @@
+[
+  {
+    "batch_date": "2021-09-01",
+    "direction": "IN",
+    "vaccine": "Pfizer",
+    "quantity": 1500
+  },
+  {
+    "batch_date": "2021-09-02",
+    "direction": "IN",
+    "vaccine": "Pfizer",
+    "quantity": 2200
+  },
+  {
+    "batch_date": "2021-09-02",
+    "direction": "OUT",
+    "vaccine": "Pfizer",
+    "quantity": 800
+  },
+  {
+    "batch_date": "2021-09-02",
+    "direction": "IN",
+    "vaccine": "AstraZeneca",
+    "quantity": 900
+  },
+  {
+    "batch_date": "2021-09-02",
+    "direction": "OUT",
+    "vaccine": "AstraZeneca",
+    "quantity": 200
+  },
+  {
+    "batch_date": "2021-09-03",
+    "direction": "IN",
+    "vaccine": "AstraZeneca",
+    "quantity": 700
+  },
+  {
+    "batch_date": "2021-09-03",
+    "direction": "OUT",
+    "vaccine": "Pfizer",
+    "quantity": 300
+  },
+  {
+    "batch_date": "2021-09-04",
+    "direction": "IN",
+    "vaccine": "Pfizer",
+    "quantity": 1100
+  },
+  {
+    "batch_date": "2021-09-04",
+    "direction": "OUT",
+    "vaccine": "Pfizer",
+    "quantity": 700
+  },
+  {
+    "batch_date": "2021-09-04",
+    "direction": "IN",
+    "vaccine": "AstraZeneca",
+    "quantity": 500
+  },
+  {
+    "batch_date": "2021-09-05",
+    "direction": "OUT",
+    "vaccine": "Pfizer",
+    "quantity": 400
+  },
+  {
+    "batch_date": "2021-09-05",
+    "direction": "OUT",
+    "vaccine": "AstraZeneca",
+    "quantity": 200
+  }
+]
+
